@@ -17,7 +17,8 @@ const codigo = document.getElementById("codigo"),
 //funciones
 const crearPelicula = (e) =>{
     e.preventDefault();
-    //tomar toda la info del formulario
+    // //tomar toda la info del formulario
+    // invocar funciones que validan
     //validar esa info
     //crear el objeto
     const peliNueva = new Pelicula(undefined, titulo.value, descripcion.value, imagen.value, genero.value);

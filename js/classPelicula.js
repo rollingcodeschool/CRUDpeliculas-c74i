@@ -4,7 +4,7 @@ export default class Pelicula{
     #descripcion;
     #imagen;
     #genero;
-    constructor(codigo = 1, titulo, descripcion, imagen, genero){
+    constructor(codigo = uuidv4(), titulo, descripcion, imagen, genero){
         this.#codigo = codigo;
         this.#titulo = titulo;
         this.#descripcion = descripcion;
