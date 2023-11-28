@@ -9,18 +9,34 @@ const codigo = document.getElementById("codigo"),
   genero = document.getElementById("genero"),
   modalPelicula = new bootstrap.Modal(document.getElementById('modalPelicula')),
   btnAgregar = document.getElementById('btnAgregar');
+//aqui creo una lista vacia para las pelis
+  const listaPeliculas = [];
 
 
 //funciones
-const crearPelicula = () =>{
+const crearPelicula = (e) =>{
+    e.preventDefault();
     //tomar toda la info del formulario
+    //validar esa info
     //crear el objeto
-    const peliNueva = new Pelicula(1, 'batman', 'djhfskdjf', 'ashdgahjs', 'Accion');
+    const peliNueva = new Pelicula(undefined, titulo.value, descripcion.value, imagen.value, genero.value);
     //guardar lista de peliculas en localstorage
+    listaPeliculas.push(peliNueva);
+    console.log(listaPeliculas);
+    guardarEnLocalStorage();
+    limpiarFormularioPelicula();
 }
 
 const abrirModalPelicula = ()=>{
     modalPelicula.show();
+}
+
+const guardarEnLocalStorage = () =>{
+    localStorage.setItem('listaPeliculas', JSON.stringify(listaPeliculas));
+}
+
+const limpiarFormularioPelicula = ()=>{
+    formularioAdminPelis.reset();
 }
 
 
