@@ -10,7 +10,8 @@ const codigo = document.getElementById("codigo"),
   modalPelicula = new bootstrap.Modal(document.getElementById('modalPelicula')),
   btnAgregar = document.getElementById('btnAgregar');
 //aqui creo una lista vacia para las pelis
-  const listaPeliculas = [];
+  const listaPeliculas = JSON.parse(localStorage.getItem('listaPeliculas')) || [];
+  console.log(listaPeliculas)
 
 
 //funciones
