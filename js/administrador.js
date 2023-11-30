@@ -77,7 +77,9 @@ window.borrarPelicula = (codigo)=>{
     //actualizar el localstorage
     guardarEnLocalStorage();
     //borrar la fila de la tabla
-    
+    const tablaPelicula = document.querySelector('tbody');
+    console.log(tablaPelicula.children[posicionPelicula])
+    tablaPelicula.removeChild(tablaPelicula.children[posicionPelicula]);
 }
 
 //resto de la logica
