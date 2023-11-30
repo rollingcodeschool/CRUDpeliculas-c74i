@@ -60,10 +60,25 @@ const crearFila = (pelicula, fila)=> {
     <td>${pelicula.descripcion}</td>
     <td>${pelicula.imagen}</td>
     <td>${pelicula.genero}</td>
-    <td><button class="btn btn-warning">Editar</button><button class="btn btn-danger">Borrar</button></td>
+    <td>
+    <button class="btn btn-warning">Editar</button>
+    <button class="btn btn-danger" onclick='borrarPelicula("${pelicula.codigo}")'>Borrar</button>
+    </td>
   </tr>`
 }
 
+window.borrarPelicula = (codigo)=>{
+    console.log(codigo)
+    //buscar en el array el codigo de la peli a borrar
+    const posicionPelicula = listaPeliculas.findIndex((pelicula)=> pelicula.codigo === codigo);
+    console.log(posicionPelicula)
+    //borrar la peli del array con splice posicion de la peli
+    listaPeliculas.splice(posicionPelicula,1);
+    //actualizar el localstorage
+    guardarEnLocalStorage();
+    //borrar la fila de la tabla
+    
+}
 
 //resto de la logica
 formularioAdminPelis.addEventListener('submit', crearPelicula)
