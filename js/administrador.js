@@ -21,21 +21,30 @@ const crearPelicula = (e) => {
   // //tomar toda la info del formulario
   // invocar funciones que validan
   //validar esa info
-  //crear el objeto
-  const peliNueva = new Pelicula(
-    undefined,
-    titulo.value,
-    descripcion.value,
-    imagen.value,
-    genero.value
-  );
-  //guardar lista de peliculas en localstorage
-  listaPeliculas.push(peliNueva);
-  console.log(listaPeliculas);
-  guardarEnLocalStorage();
-  limpiarFormularioPelicula();
-  //dibujar la peli en la tabla
-  crearFila(peliNueva, listaPeliculas.length);
+  if (
+    validarTexto(titulo.value, 3, 50) &&
+    validarTexto(descripcion.value, 3, 350) &&
+    validarGenero(genero.value) &&
+    validarURLImagen(imagen.value)
+  ) {
+    //crear el objeto
+    const peliNueva = new Pelicula(
+      undefined,
+      titulo.value,
+      descripcion.value,
+      imagen.value,
+      genero.value
+    );
+    //guardar lista de peliculas en localstorage
+    listaPeliculas.push(peliNueva);
+    console.log(listaPeliculas);
+    guardarEnLocalStorage();
+    limpiarFormularioPelicula();
+    //dibujar la peli en la tabla
+    crearFila(peliNueva, listaPeliculas.length);
+  } else {
+    alert("Ingresaste datos erroneos");
+  }
 };
 
 const abrirModalPelicula = () => {
@@ -113,9 +122,45 @@ window.borrarPelicula = (codigo) => {
   });
 };
 
-window.verDetalle = (codigo)=>{
-    console.log(window.location)
-    window.location.href = window.location.origin + '/pages/detallePelicula.html?codigo='+codigo;
+window.verDetalle = (codigo) => {
+  console.log(window.location);
+  window.location.href =
+    window.location.origin + "/pages/detallePelicula.html?codigo=" + codigo;
+};
+
+const validarTexto = (texto, min, max) => {
+  if (texto.length >= min && texto.length <= max) {
+    console.log("El texto cumple con la cantidad especificada");
+    return true;
+  } else {
+    console.log("no paso la validacion de cantidad de caracteres");
+    return false;
+  }
+};
+
+const validarGenero = (genero) => {
+  if (
+    genero === "Accion" ||
+    genero === "Fantasia" ||
+    genero === "Aventura" ||
+    genero === "Comedia" ||
+    genero === "Terror"
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+const validarURLImagen = (url) =>{
+  const patron = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/;
+  // if(true)
+  if(patron.test(url)){
+    // msjError = 'hgdjhfgdfg'
+    return true;
+  }else{
+    return false
+  }
 }
 
 //resto de la logica
